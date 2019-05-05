@@ -120,12 +120,12 @@ main {
 // 引入矢量图标库
 @font-face {
   font-family: 'iconfont';  /* project id 1169720 */
-  src: url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.eot');
-  src: url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1169720_suhnhth8p6.eot');
+  src: url('//at.alicdn.com/t/font_1169720_suhnhth8p6.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1169720_suhnhth8p6.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1169720_suhnhth8p6.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1169720_suhnhth8p6.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1169720_suhnhth8p6.svg#iconfont') format('svg');
 }
 //矢量图样式
 .iconfont {
