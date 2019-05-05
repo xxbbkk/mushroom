@@ -3,7 +3,7 @@ module.exports = {
     devServer: {
       open: 'true',
       proxy: {
-        '/todos': {
+        '/api': {
           target: 'http://www.xiongmaoyouxuan.com',
           ws: true,
           changeOrigin: true

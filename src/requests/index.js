@@ -25,7 +25,8 @@ ajax.interceptors.response.use((resp) => {
   // console.log(resp)
   return resp
 })
+
 //导出getDate请求方法
 export const getDate = () => {
-  return ajax.get('/todos')
+  return ajax.get('/api/tabs?sa=')
 }
