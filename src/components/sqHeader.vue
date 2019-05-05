@@ -1,9 +1,9 @@
 <template>
   <div class="sq-header">
     <!-- 搜索标签 -->
-    <div class="iconfont sq-header-icon">&#xe600;</div>
+    <router-link tag="div" to="/" class="iconfont sq-header-icon">&#xe600;</router-link>
     <van-search class="sq-header-input" placeholder="请输入搜索关键词" v-model="value" />
-    <div class="iconfont sq-header-icon">&#xe69a;</div>
+    <router-link tag="div" to="/my" class="iconfont sq-header-icon">&#xe69a;</router-link>
   </div>
 </template>
 
