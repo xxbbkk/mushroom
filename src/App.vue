@@ -7,9 +7,9 @@
       <!-- 路由默认组件 -->
       <router-view></router-view>
     </main>
-    <footer class="sq-footer">
+    <footer>
       <!-- 路由footer组件 -->
-      <router-view class="sq-footer-li"  name='footer'></router-view>
+      <router-view name='footer'></router-view>
     </footer>
   </div>
 </template>
@@ -23,11 +23,6 @@ export default {
     sqHeader
   },
   created() {
-    this.$http.getDate()
-    .then(res => {
-      // eslint-disable-next-line
-      console.log(res)
-    })
   }
 }
 </script>
@@ -84,10 +79,6 @@ html {
   width: 100%;
   height: 100%;
 }
-header {
-  width: 100%;
-  height: 52px;
-}
 main {
   width: 100%;
   flex: 1;
@@ -96,26 +87,6 @@ main {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-.sq-footer{
-
-  height: 52px;
-  width: 100%;
-  display: flex;
-  &-li{
-    width: 100%;
-    height: 100%;
-    border-top: 1px solid #dedede;
-    display: flex;
-    .router-link-exact-active,
-    .router-link-active{
-      color: red;
-    }
-    li{
-      flex:1;
-      text-align: center;
-    }
-  }
 }
 // 引入矢量图标库
 @font-face {
