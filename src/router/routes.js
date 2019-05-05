@@ -35,18 +35,6 @@ export default [
     icon:'&#xe65a;',
   }
 }, {
-  path: '/live',
-  name: 'live',
-  components: {
-    default: Live,
-    footer:sqFooter
-  },
-  meta: {
-    isTabItem:true,
-    title:'直播',
-    icon:'&#xe656;'
-  }
-},  {
   path: '/shop',
   name: 'shop',
   components: {
@@ -57,6 +45,18 @@ export default [
     isTabItem:true,
     title:'商城',
     icon:'&#xe658;'
+  }
+}, {
+  path: '/live',
+  name: 'live',
+  components: {
+    default: Live,
+    footer:sqFooter
+  },
+  meta: {
+    isTabItem:true,
+    title:'直播',
+    icon:'&#xe656;'
   }
 }, {
   path: '/my',
