@@ -31,9 +31,6 @@ export default {
     return {
       isShow: false
     }
-  },
-  mounted() {
-
   }
 }
 </script>
