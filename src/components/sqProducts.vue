@@ -44,7 +44,6 @@ export default {
         this.products = [...this.products,...res.data.data.items.list]
         this.isEnd = res.data.data.items.isEnd
         this.start = res.data.data.items.nextIndex
-        console.log(res)
       })
     }
   },
@@ -73,13 +72,20 @@ export default {
     margin-bottom: 20px;
   }
   .sq-product {
+    position: relative;
+    padding-top:180px;
     width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     &-img {
       width: 95%;
-      height: 100px;
+      height: 180px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
     &-price {
       display: flex;
@@ -87,10 +93,15 @@ export default {
       margin: 5px;
       box-sizing: border-box;
       &__origin {
+        display: block;
         color: grey;
+        height: 30px;
+        line-height: 30px;
         text-decoration: line-through;
       }
       &__now {
+        height: 30px;
+        line-height: 30px;
         color: red;
       }
     }
