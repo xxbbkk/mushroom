@@ -2,6 +2,7 @@
   <div class="sq-cate">
     <ul class="sq-cate-left">
       <router-link
+
         tag="li"
         v-for="cate in list"
         :key="cate.id"
@@ -9,6 +10,7 @@
       >{{cate.name}}</router-link>
     </ul>
     <ul class="sq-cate-right">
+
       <router-view></router-view>
     </ul>
   </div>
@@ -25,17 +27,21 @@ export default {
     this.$http.getDate()
     .then(resp => {
       this.list = resp.data.data.list
+
       //刷新页面时进入上一的选择，默认第一个
       let { cateId=this.list[0].id } = this.$route.params
       this.$router.push(`/category/${cateId}`)
+
     })
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .sq-cate {
+  width: 100%;
+  height: 100%;
   font-size: 16px;
   display: flex;
   height: 100%;
@@ -46,6 +52,7 @@ export default {
     color: #666666;
     width: 30%;
     box-sizing: border-box;
+    border-left: 2px solid #f1f1f1;
     > li{
     justify-content: center;
     padding: 0 12px;
@@ -64,5 +71,7 @@ export default {
     box-sizing: border-box;
   }
 }
+}
+ 
 
 </style>
