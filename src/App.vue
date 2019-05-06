@@ -7,9 +7,9 @@
       <!-- 路由默认组件 -->
       <router-view></router-view>
     </main>
-    <footer class="sq-footer">
+    <footer>
       <!-- 路由footer组件 -->
-      <router-view class="sq-footer-li"  name='footer'></router-view>
+      <router-view name='footer'></router-view>
     </footer>
   </div>
 </template>
@@ -20,7 +20,9 @@ import sqHeader from '@/components/sqHeader.vue'
 export default {
   name: 'app',
   components: {
-    sqHeader,
+    sqHeader
+  },
+  created() {
   }
 }
 </script>
@@ -77,10 +79,6 @@ html {
   width: 100%;
   height: 100%;
 }
-header {
-  width: 100%;
-  height: 52px;
-}
 main {
   width: 100%;
   flex: 1;
@@ -91,35 +89,15 @@ main {
   display: flex;
   flex-direction: column;
 }
-.sq-footer{
-
-  height: 52px;
-  width: 100%;
-  display: flex;
-  &-li{
-    width: 100%;
-    height: 100%;
-    border-top: 1px solid #dedede;
-    display: flex;
-    .router-link-exact-active,
-    .router-link-active{
-      color: red;
-    }
-    li{
-      flex:1;
-      text-align: center;
-    }
-  }
-}
 // 引入矢量图标库
 @font-face {
   font-family: 'iconfont';  /* project id 1169720 */
-  src: url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.eot');
-  src: url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1169720_fr8phsw8kf6.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1169720_b63c4o4q3be.eot');
+  src: url('//at.alicdn.com/t/font_1169720_b63c4o4q3be.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1169720_b63c4o4q3be.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1169720_b63c4o4q3be.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1169720_b63c4o4q3be.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1169720_b63c4o4q3be.svg#iconfont') format('svg');
 }
 //矢量图样式
 .iconfont {

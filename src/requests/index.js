@@ -34,3 +34,12 @@ export const getHomeList = () => {
 export const getUser = () => {
   return ajax.get ('http://rap2api.taobao.org/app/mock/167519/todos/user')
 }
+//导出getDate请求方法
+export const getDate = () => {
+  return ajax.get('/api/tabs')
+}
+
+//通过id请求产品
+export const getProductsById = (cateId, start=0) => {
+  return ajax.get(`/api/tab/${cateId}?start=${start}`)
+}
