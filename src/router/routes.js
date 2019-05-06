@@ -7,6 +7,7 @@ const Live = () => import('../views/Live')
 const My = () => import('../views/My')
 const Shop = () => import('../views/Shop')
 const category = () => import('@/views/category')
+const sqProducts = () => import('@/components/sqProducts')
 //导出的配置项
 export default [
   //根目录访问，直接重定向到/index
@@ -22,6 +23,10 @@ export default [
     components: {
       default: category
     },
+    children: [{
+      path: ':cateId',
+      component: sqProducts
+    }],
     meta: {
       isTabItem: false,
       title: '商品'

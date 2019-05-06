@@ -1,16 +1,15 @@
 <template>
   <div class="sq-cate">
     <ul class="sq-cate-left">
-      <li
+      <router-link
+        tag="li"
         v-for="cate in list"
         :key="cate.id"
-      >{{cate.name}}</li>
+        :to="`/category/${cate.id}`"
+      >{{cate.name}}</router-link>
     </ul>
     <ul class="sq-cate-right">
-        <li>
-          <img src="" alt="">
-          <p>上新</p>
-        </li>
+      <router-view></router-view>
     </ul>
   </div>
 </template>
@@ -26,7 +25,9 @@ export default {
     this.$http.getDate()
     .then(resp => {
       this.list = resp.data.data.list
-      console.log(this.list)
+      //刷新页面时进入上一的选择，默认第一个
+      let { cateId=this.list[0].id } = this.$route.params
+      this.$router.push(`/category/${cateId}`)
     })
   }
 }
@@ -51,7 +52,11 @@ export default {
     display: flex;
     flex-direction: column;
     height: 48px;
+    &.router-link-active,
+    &.router-link-exact-active {
+          background: #fff;
     }
+   }
   }
   &-right {
     overflow-x: hidden;
