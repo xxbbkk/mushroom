@@ -10,6 +10,11 @@
     </ul>
     <ul class="sq-cate-right">
       <router-view></router-view>
+      <back-top
+        class="sq-cate-right__top"
+        scroll-container=".sq-cate-right"
+        :distance-to-show="300"
+      ></back-top>
     </ul>
   </div>
 </template>
@@ -21,7 +26,7 @@ export default {
       list: []
     }
   },
-  created () {
+  created() {
     this.$http.getDate()
     .then(resp => {
       this.list = resp.data.data.list
@@ -30,6 +35,7 @@ export default {
       this.$router.push(`/category/${cateId}`)
     })
   }
+
 }
 </script>
 
@@ -62,6 +68,11 @@ export default {
     overflow-x: hidden;
     width: 70%;
     box-sizing: border-box;
+    &__top {
+      position:fixed;
+      right: 20px;
+      bottom: 50px;
+    }
   }
 }
 
