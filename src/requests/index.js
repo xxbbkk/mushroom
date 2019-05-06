@@ -28,5 +28,9 @@ ajax.interceptors.response.use((resp) => {
 
 //导出getDate请求方法
 export const getDate = () => {
-  return ajax.get('/api/tabs?sa=')
+  return ajax.get('/api/tabs?')
+}
+//通过id请求产品信息
+export const getProduct = (cateId, start=0) => {
+  return ajax.get(`/api/tabs/${cateId}?start=${start}`)
 }

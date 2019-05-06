@@ -82,6 +82,7 @@ html {
 main {
   width: 100%;
   flex: 1;
+  overflow-x: hidden;
 }
 #app{
   height: 100%;
