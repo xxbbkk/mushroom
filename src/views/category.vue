@@ -37,6 +37,8 @@ export default {
 .sq-cate {
   font-size: 16px;
   display: flex;
+  height: 100%;
+  overflow: hidden; 
   &-left {
     overflow-x: hidden;
     background: #f1f1f1;
@@ -52,6 +54,7 @@ export default {
     }
   }
   &-right {
+    overflow-x: hidden;
     width: 70%;
     box-sizing: border-box;
   }
