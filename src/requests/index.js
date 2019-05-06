@@ -30,3 +30,8 @@ ajax.interceptors.response.use((resp) => {
 export const getDate = () => {
   return ajax.get('/api/tabs')
 }
+
+//通过id请求产品
+export const getProductsById = (cateId, start=0) => {
+  return ajax.get(`/api/tab/${cateId}?start=${start}`)
+}

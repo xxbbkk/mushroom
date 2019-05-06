@@ -1,19 +1,104 @@
 <template>
+<div class="sq-pro">
   <router-link
     tag="li"
     to="/"
+    v-for="item in products"
+    :key="item.id"
+    class="sq-product"
   >
-          <img src="" alt="">
-          <p>上新</p>
+    <img
+      :src="item.image"
+      alt=""
+      class="sq-product-img"
+    ><br>
+    <span class="sq-product-text">{{item.title}}</span>
+    <div class="sq-product-price">
+      <span class="sq-product-price__origin">￥{{item.originPrice}}</span>
+      <span class="sq-product-price__now">￥{{item.price}}</span>
+    </div>
   </router-link>
+  <div class="sq-product-more" v-if="!isEnd" @click="getProducts">加载更多</div>
+  <div class="sq-product-more" v-else>没有更多了</div>
+</div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      products: [],
+      //判断是否为最后一页
+      isEnd: false,
+      start: 0,
+    }
+  },
+  created() {
+  },
+  methods: {
+    //该方法请求产品
+    getProducts (){
+      let cateId = this.$route.params.cateId
+      this.$http.getProductsById(cateId,this.start)
+      .then((res) => {
+        this.products = [...this.products,...res.data.data.items.list]
+        this.isEnd = res.data.data.items.isEnd
+        this.start = res.data.data.items.nextIndex
+        console.log(res)
+      })
+    }
+  },
+  //进入路由前先获取一次数据
+  beforeRouteEnter(to, from, next) {
+    //改地方没有this，vm代表this。
+    next(vm => {
+      vm.getProducts()
+    })
+  },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    //在路由更新前初始化数组和分页
+    this.products = [];
+    this.start = 0;
+    this.getProducts();
+  }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  .sq-pro {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .sq-product {
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &-img {
+      width: 95%;
+      height: 100px;
+    }
+    &-price {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px;
+      box-sizing: border-box;
+      &__origin {
+        color: grey;
+        text-decoration: line-through;
+      }
+      &__now {
+        color: red;
+      }
+    }
+  }
+  .sq-product-more {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+  }
 </style>
