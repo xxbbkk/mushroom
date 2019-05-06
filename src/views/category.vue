@@ -2,14 +2,16 @@
   <div class="sq-cate">
     <ul class="sq-cate-left">
       <router-link
+
+        tag="li"
         v-for="cate in list"
         :key="cate.id"
-        tag="li"
         :to="`/category/${cate.id}`"
       >{{cate.name}}</router-link>
     </ul>
     <ul class="sq-cate-right">
-      <router-view/>
+
+      <router-view></router-view>
     </ul>
   </div>
 </template>
@@ -25,10 +27,11 @@ export default {
     this.$http.getDate()
     .then(resp => {
       this.list = resp.data.data.list
-      this.$nextTick( () => {
-        let { cateId = this.list[0].id } =this.$route.params
-        this.$router.push(`/category/${cateId}`)
-      })
+
+      //刷新页面时进入上一的选择，默认第一个
+      let { cateId=this.list[0].id } = this.$route.params
+      this.$router.push(`/category/${cateId}`)
+
     })
   }
 }
@@ -41,7 +44,8 @@ export default {
   height: 100%;
   font-size: 16px;
   display: flex;
-  overflow: hidden;
+  height: 100%;
+  overflow: hidden; 
   &-left {
     overflow-x: hidden;
     background: #f1f1f1;
@@ -57,10 +61,9 @@ export default {
     height: 48px;
     &.router-link-active,
     &.router-link-exact-active {
-          color: #26a2ff;
-          background-color: #fff;
-          border-left-color: #26a2ff;
-        }
+          background: #fff;
+    }
+   }
   }
   &-right {
     overflow-x: hidden;
