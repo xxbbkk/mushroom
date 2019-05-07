@@ -26,7 +26,7 @@ export default {
     this.$http.getDate()
     .then(resp => {
       this.list = resp.data.data.list
-      console.log(this.list)
+      //console.log(this.list)
     })
   }
 }

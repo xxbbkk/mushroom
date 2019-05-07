@@ -30,3 +30,7 @@ ajax.interceptors.response.use((resp) => {
 export const getDate = () => {
   return ajax.get('/api/tabs?sa=')
 }
+// 获取详情
+export const getProductDetails = (id) => {
+  return ajax.get(`/api/detail?id=${id}`)
+}
