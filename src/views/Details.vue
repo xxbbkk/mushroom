@@ -226,12 +226,12 @@ export default {
     const { id } = this.$route.params
     this.$http.getProductDetails(id)
       .then(resp => {
-        console.log(resp)
+        
         this.images = resp.data.data.detail.photo
         this.global = resp.data.data
         this.$nextTick(() => {
           this.detail = resp.data.data.detail
-          console.log(this.images)
+         
           this.initSwiper()
         })
       })
