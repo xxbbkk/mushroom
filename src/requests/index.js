@@ -26,6 +26,14 @@ ajax.interceptors.response.use((resp) => {
   return resp
 })
 
+//首页列表数据
+export const getHomeList = () => {
+  return ajax.get ('/api/tabs?sa=')
+}
+//rap2用户信息数据
+export const getUser = () => {
+  return ajax.get ('http://rap2api.taobao.org/app/mock/167519/todos/user')
+}
 //导出getDate请求方法
 export const getDate = () => {
   return ajax.get('/api/tabs')

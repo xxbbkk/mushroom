@@ -1,9 +1,15 @@
 <template>
+<<<<<<< HEAD
+  <div>
+    <!-- 搜索标签 -->
+    <van-search placeholder="请输入搜索关键词" v-model="value" />
+=======
   <div class="sq-header">
     <!-- 搜索标签 -->
     <router-link tag="div" to="/category" class="iconfont sq-header-icon">&#xe600;</router-link>
     <van-search class="sq-header-input" placeholder="请输入搜索关键词" v-model="value" />
     <router-link tag="div" to="/my" class="iconfont sq-header-icon">&#xe69a;</router-link>
+>>>>>>> d10b0e76755441e14a105e1f4709f330ff1e21e9
   </div>
 </template>
 
@@ -14,6 +20,14 @@ import Vue from 'vue'
 
 Vue.use(Search);
 export default {
+<<<<<<< HEAD
+
+}
+</script>
+
+<style>
+
+=======
   
 }
 </script>
@@ -38,4 +52,5 @@ export default {
     flex:1;
   }
 }
+>>>>>>> d10b0e76755441e14a105e1f4709f330ff1e21e9
 </style>
