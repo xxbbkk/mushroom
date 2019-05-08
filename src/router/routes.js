@@ -8,6 +8,7 @@ const My = () => import('../views/My')
 const Shop = () => import('../views/Shop')
 const category = () => import('@/views/category')
 const sqProducts = () => import('@/components/sqProducts')
+const VhList = () => import('@/components/VhList')
 //导出的配置项
 export default [
   //根目录访问，直接重定向到/index
@@ -84,5 +85,11 @@ export default [
       isTabItem: true,
       title: '我的',
       icon: '&#xe65d;'
+    }
+  },{
+    path: '/list/:cateId',
+    name: 'list',
+    components: {
+      default: VhList
     }
   }]

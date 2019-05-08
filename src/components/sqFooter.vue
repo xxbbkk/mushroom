@@ -20,10 +20,11 @@ export default {
   data() {
     return {
       // 过滤掉首页重定向的数据，留下需要的（四个）模块
-      navs: routes.filter(item =>  item.meta.isTabItem === true)
+      navs: ''
     }
   },
   created() {
+    this.navs = routes.filter(item => item.meta.isTabItem === true)
   }
 }
 </script>
