@@ -7,6 +7,7 @@ const Live = () => import('../views/Live')
 const My = () => import('../views/My')
 const Shop = () => import('../views/Shop')
 const category = () => import('@/views/category')
+const VhLogin = () => import('../views/VhLogin')
 const sqProducts = () => import('@/components/sqProducts')
 const VhList = () => import('@/components/VhList')
 //导出的配置项
@@ -86,10 +87,16 @@ export default [
       title: '我的',
       icon: '&#xe65d;'
     }
-  },{
+  }, {
     path: '/list/:cateId',
     name: 'list',
     components: {
       default: VhList
+    }
+  }, {
+    path: '/login',
+    name: 'login',
+    components: {
+      default: VhLogin
     }
   }]
