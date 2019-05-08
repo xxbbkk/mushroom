@@ -7,6 +7,9 @@ const Live = () => import('../views/Live')
 const My = () => import('../views/My')
 const Shop = () => import('../views/Shop')
 const category = () => import('@/views/category')
+
+const Details = () => import('@/views/Details')
+
 const sqProducts = () => import('@/components/sqProducts')
 //导出的配置项
 export default [
@@ -84,5 +87,15 @@ export default [
       isTabItem: true,
       title: '我的',
       icon: '&#xe65d;'
+    }
+
+  }, {
+    path: '/details/:id',
+    name: 'details',
+    components: {
+      default: Details
+    },
+    meta: {
+      isTabItem: false
     }
   }]

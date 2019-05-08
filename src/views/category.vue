@@ -33,6 +33,7 @@ export default {
     .then(resp => {
       this.list = resp.data.data.list
 
+
       //刷新页面时进入上一的选择，默认第一个
       let { cateId=this.list[0].id } = this.$route.params
       this.$router.push(`/category/${cateId}`)
