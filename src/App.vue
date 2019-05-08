@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <header>
-      <sq-header></sq-header>
+      <!-- 路由头部组件  -->
+      <router-view name='header'></router-view>
     </header>
     <main>
       <!-- 路由默认组件 -->
@@ -15,15 +16,9 @@
 </template>
 
 <script>
-import sqHeader from '@/components/sqHeader.vue'
 
 export default {
-  name: 'app',
-  components: {
-    sqHeader
-  },
-  created() {
-  }
+  name: 'app'
 }
 </script>
 
@@ -102,7 +97,7 @@ main {
 //矢量图样式
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
