@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <header>
-      <sq-header></sq-header>
+      <!-- 路由头部组件  -->
+      <router-view name='header'></router-view>
     </header>
     <main>
       <!-- 路由默认组件 -->
@@ -15,15 +16,9 @@
 </template>
 
 <script>
-import sqHeader from '@/components/sqHeader.vue'
 
 export default {
-  name: 'app',
-  components: {
-    sqHeader
-  },
-  created() {
-  }
+  name: 'app'
 }
 </script>
 

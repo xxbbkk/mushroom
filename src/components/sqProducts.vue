@@ -1,10 +1,15 @@
 <template>
-<div class="sq-pro">
+<div
+  class="sq-pro"
+  v-infinite-scroll="getProducts"
+  infinite-scroll-disabled="loading"
+  infinite-scroll-distance="10"
+>
   <router-link
     tag="li"
-    to="/"
     v-for="item in products"
     :key="item.id"
+    :to="`/details/${item.id}`"
     class="sq-product"
   >
     <img
@@ -18,8 +23,7 @@
       <span class="sq-product-price__now">￥{{item.price}}</span>
     </div>
   </router-link>
-  <div class="sq-product-more" v-if="!isEnd" @click="getProducts">加载更多</div>
-  <div class="sq-product-more" v-else>没有更多了</div>
+  <div class="sq-product-more" v-if="!isEnd">没有更多了</div>
 </div>
 </template>
 
@@ -31,6 +35,8 @@ export default {
       //判断是否为最后一页
       isEnd: false,
       start: 0,
+      //用于无限滚动
+      loading: false
     }
   },
   created() {
@@ -38,22 +44,25 @@ export default {
   methods: {
     //该方法请求产品
     getProducts (){
+      this.loading = true;
       let cateId = this.$route.params.cateId
       this.$http.getProductsById(cateId,this.start)
       .then((res) => {
-        this.products = [...this.products,...res.data.data.items.list]
+        res.data.data.items.list = res.data.data.items.list.filter(item => item.title != undefined)
+        this.products = [...this.products, ...res.data.data.items.list]
         this.isEnd = res.data.data.items.isEnd
         this.start = res.data.data.items.nextIndex
+        this.loading = false
       })
     }
   },
-  //进入路由前先获取一次数据
-  beforeRouteEnter(to, from, next) {
-    //改地方没有this，vm代表this。
-    next(vm => {
-      vm.getProducts()
-    })
-  },
+  // //进入路由前先获取一次数据
+  // beforeRouteEnter(to, from, next) {
+  //   //改地方没有this，vm代表this。
+  //   next(vm => {
+  //     vm.getProducts()
+  //   })
+  // },
   beforeRouteUpdate(to, from, next) {
     next()
     //在路由更新前初始化数组和分页

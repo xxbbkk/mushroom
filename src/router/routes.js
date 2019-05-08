@@ -1,5 +1,6 @@
 //该文件配置路由参数
 import sqFooter from '@/components/sqFooter.vue'
+import sqHeader from '@/components/sqHeader.vue'
 
 //引入模块使用的懒加载
 const Index = () => import('../views/Index')
@@ -24,7 +25,9 @@ export default [
     path: '/category',
     name: 'category',
     components: {
-      default: category
+      default: category,
+      header: sqHeader,
+      footer: sqFooter,
     },
     children: [{
       path: ':cateId',
@@ -41,7 +44,8 @@ export default [
       //默认组件
       default: Index,
       //需要调用的组件，使用name=""调用
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqHeader
     },
     //路由的参数在route里，我们可以新建属性meta写我们需要的参数
     meta: {
@@ -57,7 +61,8 @@ export default [
     name: 'shop',
     components: {
       default: Shop,
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqHeader
     },
     meta: {
       isTabItem: true,
@@ -69,7 +74,8 @@ export default [
     name: 'live',
     components: {
       default: Live,
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqHeader
     },
     meta: {
       isTabItem: true,
@@ -81,7 +87,8 @@ export default [
     name: 'my',
     components: {
       default: My,
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqHeader
     },
     meta: {
       isTabItem: true,
