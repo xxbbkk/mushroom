@@ -26,7 +26,6 @@
   <van-tabs 
   @click="toFind" 
   class="vh-brance__top"
-  duration = 0.05
   title-inactive-color = '#000'
   color = '#FF5777'
   >

@@ -25,7 +25,13 @@
     <div class="sq-product-btn">
       <van-button
         type="info"
-        @click.stop="addToCart"
+        @click.stop="addToCart({
+          id: item.id,
+          title: item.title,
+          img: item.image,
+          price: item.price,
+          isChecked: false
+        })"
       >加入购物车</van-button>
     </div>
   </router-link>
@@ -50,8 +56,6 @@ export default {
       //用于无限滚动
       loading: false
     }
-  },
-  created() {
   },
   methods: {
     ...mapMutations([

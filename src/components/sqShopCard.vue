@@ -1,19 +1,35 @@
 <template>
    <div class="sq-shop">
     <div class="sq-shop-left">
-      <van-checkbox v-model="checked"/>
+      <van-checkbox
+        v-model="checked"
+        @click="checkedChange({checked, id})"
+      />
     </div>
     <img class="sq-shop-img" :src="img" :alt="title">
     <div class="sq-shop-right">
-      <van-cell-group>
+      <van-cell-group class="group">
         <van-cell class="title" :title="title" />
       </van-cell-group>
       <div class="sq-shop-right__deta">
         <div>￥{{price}}</div>
         <div class="count">
-          <button class="btn">-</button>
-          <input class="input" :value="number" type="text">
-          <button class="btn">+</button>
+          <button
+            class="btn"
+            @click="deCrement(id)"
+          >-</button>
+          <input class="input"
+            :value="number"
+            @input="inputChange({
+              id,
+              value:number
+            })"
+            type="text"
+          >
+          <button
+            class="btn"
+            @click="inCrement(id)"
+          >+</button>
         </div>
       </div>
     </div>
@@ -21,16 +37,37 @@
 </template>
 
 <script>
+import { constants } from 'crypto'
+import { mapMutations } from 'vuex'
+
 export default {
-  props:['id','number','title','price','isChecked','img']
+  props:['id','number','title','price','isChecked','img'],
+  data() {
+    return {
+      checked: Boolean,
+      value:'',
+    }
+  },
+  mounted() {
+    this.checked = this.$props.isChecked
+  },
+  methods: {
+    ...mapMutations([
+      'inCrement',
+      'deCrement',
+      'inputChange',
+      'checkedChange'
+    ])
+  }
 }
 </script>
 
 <style lang="scss">
 .sq-shop {
+  margin:5px 0;
   display: flex;
   width: 100%;
-  height: 30vw;
+  height: 40vw;
   &-left {
     width: 15vw;
     display: flex;
@@ -71,8 +108,7 @@ export default {
       align-items: center;
     }
     .title {
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      font-size: 12px;
     }
   }
 }

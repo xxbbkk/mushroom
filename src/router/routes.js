@@ -70,19 +70,6 @@ export default [
       icon: '&#xe658;'
     }
   }, {
-    path: '/live',
-    name: 'live',
-    components: {
-      default: Live,
-      footer: sqFooter,
-      header: sqHeader
-    },
-    meta: {
-      isTabItem: true,
-      title: '直播',
-      icon: '&#xe656;'
-    }
-  }, {
     path: '/shopCart',
     name: 'shopCart',
     components: {
@@ -90,8 +77,9 @@ export default [
       footer: sqFooter
     },
     meta: {
-      isTabItem: false,
+      isTabItem: true,
       title: '购物车',
+      icon: '&#xe656;'
     }
   }, {
     path: '/my',
