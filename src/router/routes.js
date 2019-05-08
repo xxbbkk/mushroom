@@ -1,13 +1,17 @@
 //该文件配置路由参数
-import sqFooter from '@/components/sqFooter.vue'
+import sqFooter from '@/components/sqFooter'
+import sqHeader from '@/components/sqHeader'
+import sqTop from '@/components/sqTop'
 
 //引入模块使用的懒加载
 const Index = () => import('../views/Index')
-const Live = () => import('../views/Live')
 const My = () => import('../views/My')
 const Shop = () => import('../views/Shop')
 const category = () => import('@/views/category')
 const VhLogin = () => import('../views/VhLogin')
+
+const Details = () => import('@/views/Details')
+const ShopCart = () => import('@/views/ShopCart')
 const sqProducts = () => import('@/components/sqProducts')
 const VhList = () => import('@/components/VhList')
 //导出的配置项
@@ -23,7 +27,9 @@ export default [
     path: '/category',
     name: 'category',
     components: {
-      default: category
+      default: category,
+      header: sqTop,
+      footer: sqFooter,
     },
     children: [{
       path: ':cateId',
@@ -40,7 +46,8 @@ export default [
       //默认组件
       default: Index,
       //需要调用的组件，使用name=""调用
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqHeader
     },
     //路由的参数在route里，我们可以新建属性meta写我们需要的参数
     meta: {
@@ -56,7 +63,8 @@ export default [
     name: 'shop',
     components: {
       default: Shop,
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqHeader
     },
     meta: {
       isTabItem: true,
@@ -64,15 +72,16 @@ export default [
       icon: '&#xe658;'
     }
   }, {
-    path: '/live',
-    name: 'live',
+    path: '/shopCart',
+    name: 'shopCart',
     components: {
-      default: Live,
-      footer: sqFooter
+      default: ShopCart,
+      footer: sqFooter,
+      header: sqTop
     },
     meta: {
       isTabItem: true,
-      title: '直播',
+      title: '购物车',
       icon: '&#xe656;'
     }
   }, {
@@ -80,7 +89,8 @@ export default [
     name: 'my',
     components: {
       default: My,
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqTop
     },
     meta: {
       isTabItem: true,
@@ -91,12 +101,33 @@ export default [
     path: '/list/:cateId',
     name: 'list',
     components: {
-      default: VhList
+      default: VhList,
+      header: sqTop
+    },
+    meta: {
+      isTabItem: false,
+      title: '列表'
     }
   }, {
     path: '/login',
     name: 'login',
     components: {
       default: VhLogin
+
+  },
+  meta: {
+    isTabItem: false,
+    title: '登录'
+  }
+}, {
+    path: '/details/:id',
+    name: 'details',
+    components: {
+      default: Details,
+      header: sqTop
+    },
+    meta: {
+      isTabItem: false,
+      title: '详情'
     }
   }]

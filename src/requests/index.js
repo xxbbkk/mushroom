@@ -36,7 +36,11 @@ export const getUser = () => {
 }
 //导出getDate请求方法
 export const getDate = () => {
-  return ajax.get('/api/tabs')
+  return ajax.get('/api/tabs?sa=')
+}
+// 获取详情
+export const getProductDetails = (id) => {
+  return ajax.get(`/api/detail?id=${id}`)
 }
 
 //通过id请求产品
