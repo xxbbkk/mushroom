@@ -10,7 +10,7 @@ const Shop = () => import('../views/Shop')
 const category = () => import('@/views/category')
 
 const Details = () => import('@/views/Details')
-
+const ShopCart = () => import('@/views/ShopCart')
 const sqProducts = () => import('@/components/sqProducts')
 //导出的配置项
 export default [
@@ -81,6 +81,17 @@ export default [
       isTabItem: true,
       title: '直播',
       icon: '&#xe656;'
+    }
+  }, {
+    path: '/shopCart',
+    name: 'shopCart',
+    components: {
+      default: ShopCart,
+      footer: sqFooter
+    },
+    meta: {
+      isTabItem: false,
+      title: '购物车',
     }
   }, {
     path: '/my',

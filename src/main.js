@@ -23,11 +23,15 @@ Vue.directive('back-top', {
   }
 })
 
+//引入vuex
+import store from "@/store"
+
 Vue.prototype.$http = $http;
 
 Vue.config.productionTip = false
 
 new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount('#app')

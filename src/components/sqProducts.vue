@@ -22,12 +22,24 @@
       <span class="sq-product-price__origin">￥{{item.originPrice}}</span>
       <span class="sq-product-price__now">￥{{item.price}}</span>
     </div>
+    <div class="sq-product-btn">
+      <van-button
+        type="info"
+        @click.stop="addToCart"
+      >加入购物车</van-button>
+    </div>
   </router-link>
   <div class="sq-product-more" v-if="!isEnd">没有更多了</div>
 </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import { Button } from 'vant';
+Vue.use(Button);
+
+import { mapMUtations, mapMutations } from 'vuex'
+
 export default {
   data() {
     return {
@@ -42,6 +54,9 @@ export default {
   created() {
   },
   methods: {
+    ...mapMutations([
+      'addToCart'
+    ]),
     //该方法请求产品
     getProducts (){
       this.loading = true;
@@ -82,19 +97,29 @@ export default {
   }
   .sq-product {
     position: relative;
-    padding-top:180px;
+    padding-top:50%;
     width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    &-text {
+      height: 25px;
+      line-height: 25px;
+    }
     &-img {
+      padding: 0 5px;
       width: 95%;
-      height: 180px;
+      height: 50%;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
+    }
+    &-btn {
+      display: flex;
+      margin: 5px 0;
+      justify-content: center;
     }
     &-price {
       display: flex;
@@ -104,13 +129,13 @@ export default {
       &__origin {
         display: block;
         color: grey;
-        height: 30px;
-        line-height: 30px;
+        height: 25px;
+        line-height: 25px;
         text-decoration: line-through;
       }
       &__now {
-        height: 30px;
-        line-height: 30px;
+        height: 25px;
+        line-height: 25px;
         color: red;
       }
     }
