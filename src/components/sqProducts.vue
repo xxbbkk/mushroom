@@ -111,5 +111,7 @@ export default {
     height: 30px;
     line-height: 30px;
     text-align: center;
+    color: #666;
+    font-size: 14px;
   }
 </style>

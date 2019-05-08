@@ -5,6 +5,7 @@
    color = "#FF5777"
    title-inactive-color = '#000'
    title-active-color = '#FF5777'
+   @click="userHotList"
   >
   <van-tab title="综合"></van-tab>
   <van-tab title="销量"></van-tab>
@@ -31,6 +32,8 @@
                 <i class="vh-box__i">{{list.saleNum}}</i>
                 </div>
         </li>
+        <div class="vh-list-more" v-if="!isEnd" @click="getUserList">加载更多</div>
+  <div class="vh-list-more" v-else>没有更多了</div>
     </ul>
 </div>
 </div>
@@ -43,35 +46,47 @@ Vue.use(Tab).use(Tabs).use(Icon);
 export default {
     data () {
        return {
-            userList: []
+            userList: [],
+            isEnd: false,
+           start: 0,
        }
     },
-    created () {
-        const cateId = this.$route.params.cateId
+    // created () {
+    //     const cateId = this.$route.params.cateId
+    //   this.$http.getProductsById(cateId,this.start)
+    //   .then(resp => {
+    //     this.userList = [...this.userList,...resp.data.data.items.list]
+    // })
+    // },
+     methods: {
+         userHotList () {
+             this.data = this.userList.sort( () => {
+             return (0.5-Math.random())
+             })
+         },
+    //该方法请求产品
+    getUserList () {
+      const cateId = this.$route.params.cateId
       this.$http.getProductsById(cateId,this.start)
       .then(resp => {
         this.userList = [...this.userList,...resp.data.data.items.list]
-    })
+        this.isEnd = resp.data.data.items.isEnd
+        this.start = resp.data.data.items.nextIndex
+      })
     }
-//      methods: {
-//     //该方法请求产品
-//     getUserList (){
-//       const cateId = this.$route.params.cateId
-//       this.$http.getProductsById(cateId,this.start)
-//       .then(resp => {
-//            console.log (resp + 'wegcuecu')
-//         this.userList = [...this.products,...resp.data.data.items.list]
-//         this.isEnd = resp.data.data.items.isEnd
-//         this.start = resp.data.data.items.nextIndex
-//       })
-//     },
-//     beforeRuteEnter (to,from,next) {
-//         next ()
-//     },
-//     beforeRuteUptate (to,from,next) {
-//         next ()
-//     }
-//   }
+   },
+   //在进入页面之前要先请求一次数据
+   beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.getUserList()
+    })
+  },
+  beforeRouteUpdate(to, from, next) {
+    next()
+    this.userList = [];
+    this.start = 0;
+    this.getUserList();
+  }
 }
 </script>
 
@@ -171,5 +186,13 @@ export default {
             float: right;
        }
     }
+     &-list-more {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+  }
 }
 </style>
