@@ -17,10 +17,10 @@
       alt=""
       class="sq-product-img"
     ><br>
-    <span class="sq-product-text">{{item.title}}</span>
+    <span class="sq-product-text">{{item.title }}</span>
     <div class="sq-product-price">
       <span class="sq-product-price__origin">￥{{item.originPrice}}</span>
-      <span class="sq-product-price__now">￥{{item.price}}</span>
+      <span class="sq-product-price__now">￥{{item.price | toFixed2 }}</span>
     </div>
     <div class="sq-product-btn">
       <van-button
@@ -44,7 +44,7 @@ import Vue from 'vue'
 import { Button } from 'vant';
 Vue.use(Button);
 
-import { mapMUtations, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   data() {

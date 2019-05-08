@@ -1,10 +1,10 @@
 //该文件配置路由参数
-import sqFooter from '@/components/sqFooter.vue'
-import sqHeader from '@/components/sqHeader.vue'
+import sqFooter from '@/components/sqFooter'
+import sqHeader from '@/components/sqHeader'
+import sqTop from '@/components/sqTop'
 
 //引入模块使用的懒加载
 const Index = () => import('../views/Index')
-const Live = () => import('../views/Live')
 const My = () => import('../views/My')
 const Shop = () => import('../views/Shop')
 const category = () => import('@/views/category')
@@ -26,7 +26,7 @@ export default [
     name: 'category',
     components: {
       default: category,
-      header: sqHeader,
+      header: sqTop,
       footer: sqFooter,
     },
     children: [{
@@ -74,7 +74,8 @@ export default [
     name: 'shopCart',
     components: {
       default: ShopCart,
-      footer: sqFooter
+      footer: sqFooter,
+      header: sqTop
     },
     meta: {
       isTabItem: true,
@@ -87,7 +88,7 @@ export default [
     components: {
       default: My,
       footer: sqFooter,
-      header: sqHeader
+      header: sqTop
     },
     meta: {
       isTabItem: true,
@@ -99,9 +100,11 @@ export default [
     path: '/details/:id',
     name: 'details',
     components: {
-      default: Details
+      default: Details,
+      header: sqTop
     },
     meta: {
-      isTabItem: false
+      isTabItem: false,
+      title: '详情'
     }
   }]

@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import { constants } from 'crypto'
 import { mapMutations } from 'vuex'
 
 export default {

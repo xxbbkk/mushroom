@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="sq-app">
     <!-- 遍历底部四个路由 -->
     <router-link
@@ -11,10 +12,13 @@
     <span class="iconfont" v-html="nav.meta.icon"></span>
     {{nav.meta.title}}</router-link>
   </div>
+  <span class="sq-footer-count">{{sumCount | mt100}}</span>
+</div>
 </template>
 
 <script>
 import routes from '@/router/routes'
+import { mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -25,6 +29,11 @@ export default {
   },
   created() {
     this.navs = routes.filter(item =>  item.meta.isTabItem === true)
+  },
+  computed: {
+    ...mapGetters([
+      'sumCount'
+    ])
   }
 }
 </script>
@@ -51,5 +60,18 @@ export default {
       line-height: 25px;
       justify-content: center;
   }
+  }
+  .sq-footer-count {
+    position: fixed;
+    bottom: 10vw;
+    right: 39vw;
+    font-size: 12px;
+    background: red;
+    color: white;
+    width: 28px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 8px;
   }
 </style>

@@ -26,6 +26,29 @@ Vue.directive('back-top', {
 //引入vuex
 import store from "@/store"
 
+//全局混入
+Vue.mixin ({
+  filters: {
+    //判断数字是否大于100，显示99+
+    mt100(data) {
+      if(Number.isInteger(data)) {
+        if(data > 99){
+          return '99+'
+        }else{
+          return data
+        }
+      }else {
+        return data
+      }
+    },
+    //保留两位小数
+    toFixed2 (value) {
+      return value.toFixed(2)
+    }
+  }
+})
+
+
 Vue.prototype.$http = $http;
 
 Vue.config.productionTip = false
