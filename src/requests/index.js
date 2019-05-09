@@ -47,3 +47,4 @@ export const getProductDetails = (id) => {
 export const getProductsById = (cateId, start=0) => {
   return ajax.get(`/api/tab/${cateId}?start=${start}`)
 }
+

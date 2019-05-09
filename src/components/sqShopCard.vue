@@ -12,7 +12,7 @@
         <van-cell class="title" :title="title" />
       </van-cell-group>
       <div class="sq-shop-right__deta">
-        <div>￥{{price}}</div>
+        <div>￥{{price | toFixed2}}</div>
         <div class="count">
           <button
             class="btn"
@@ -88,12 +88,14 @@ export default {
       align-items: center;
       .count {
         display: flex;
+         margin-left:38%;
       }
     }
     .input {
-      width: 20vw;
+      width: 48%;
       height: 20px;
       border:none;
+      font-size: 14px;
       border-top: 1px solid #dedede;
       border-bottom: 1px solid #dedede;
       box-sizing: border-box;
@@ -102,9 +104,10 @@ export default {
     }
     .btn {
       height: 20px;
-      display: flex;
+      color: #666;
+      border: 1px solid #dedede;
       box-sizing: border-box;
-      align-items: center;
+     
     }
     .title {
       font-size: 12px;
