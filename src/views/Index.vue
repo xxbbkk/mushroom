@@ -12,13 +12,25 @@
 <!-- 列表 -->
   <div class="vh-list">
     <ul>
-    <li v-for="list in vhList" 
+      <router-link
+      :to="`/list/${list.id}`"
+      tag="li"
+      v-for="list in vhList" 
+      :key="list.id"
+      v-cloak
+      >
+       <div class=vh-img>
+      <img :src="list.imageUrl" alt="list.name">
+      </div>
+      <p>{{list.name}}</p>
+      </router-link>
+    <!-- <li v-for="list in vhList" 
     :key="list.id">
       <div class=vh-img>
       <img :src="list.imageUrl" alt="list.name">
       </div>
       <p>{{list.name}}</p>
-    </li>
+    </li> -->
     </ul>
 </div>
 <!-- 用户信息 -->
@@ -58,7 +70,7 @@ import VhUser from '@/views/VhUser'
 Vue.use(Swipe).use(SwipeItem).use(Lazyload).use(Tab).use(Tabs);
 
 export default {
-  //https://s10.mogucdn.com/mlcdn/c45406/190306_5ifkajc430g0dbdf1eeccd637i5f9_135x135.png_640x640.v1cAC.40.webp
+
 data() {
     return {
       images: [
@@ -124,6 +136,9 @@ toFind () {
    width: 13%;
    margin:1% 3.3%;
    padding-top:calc(4/3);
+   [v-cloak] {
+     display: none;
+   }
    .vh-img {
      width: 100%;
      padding-top:100%;
@@ -165,14 +180,7 @@ toFind () {
   position: sticky;
   top: 0;
   z-index: 10;
-  // .static {
-  //   margin: 18px 0 12px 0;
-  //   font-weight: bold;
-  //   font-size:18px;
-  //   padding-bottom: 2px;
-  //  border-bottom: 2px solid #fff;
-  //  box-sizing: border-box;
-  // }
+
 }
 }
 }

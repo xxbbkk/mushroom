@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
 import * as $http from './requests'
+import stroe from './store'
 //引入mintui
 import Mint from 'mint-ui';
 Vue.use(Mint);
@@ -56,5 +57,6 @@ Vue.config.productionTip = false
 new Vue({
   store,
   router,
+  stroe,
   render: h => h(App),
 }).$mount('#app')
