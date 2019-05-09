@@ -15,9 +15,11 @@
 </div>
 <div class="vh-list-bottom">
     <ul>
-        <li 
+        <router-link
         v-for="list in userList" 
         :key="list.id"
+        :to="`/details/${list.id}`"
+        tag="li"
         >
             <div class="vh-box">
             <div class="vh-box__img">
@@ -31,7 +33,7 @@
                 <van-icon name="star-o" class="vh-box__icon" />
                 <i class="vh-box__i">{{list.saleNum}}</i>
                 </div>
-        </li>
+        </router-link>
         <div class="vh-list-more" v-if="!isEnd" @click="getUserList">加载更多</div>
   <div class="vh-list-more" v-else>没有更多了</div>
     </ul>
