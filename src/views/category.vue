@@ -55,11 +55,12 @@ export default {
   overflow: hidden; 
   &-left {
     overflow-x: hidden;
-    background: #f1f1f1;
+    background: #F6F6F6;
     color: #666666;
-    width: 30%;
+    font-size: 14px;
+    width: 26%;
     box-sizing: border-box;
-    border-left: 2px solid #f1f1f1;
+    border-left: 3px solid #F6F6F6;
     > li{
     justify-content: center;
     padding: 0 12px;
@@ -69,16 +70,19 @@ export default {
     &.router-link-active,
     &.router-link-exact-active {
           background: #fff;
+          color: #FF5577;
+          border-left: 3px solid #FF5577;
+          font-weight: bold;
     }
    }
   }
   &-right {
     overflow-x: hidden;
-    width: 70%;
+    flex:1;
     box-sizing: border-box;
     &__top {
       position:fixed;
-      right: 20px;
+      right: 10px;
       bottom: 50px;
     }
   }
