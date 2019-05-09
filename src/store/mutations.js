@@ -59,5 +59,8 @@ export default {
   //改变头标题
   changeHeaderTitle(state, title = "名鞋库") {
     state.headerTitle = title
+  },
+  loginSucces(state, userInfo) {
+    state.userInfo = userInfo
   }
 }

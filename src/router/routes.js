@@ -90,6 +90,7 @@ export default [
       title: '购物车',
       icon: '&#xe656;',
       isShowHeader: false,
+      isRequireLogin: true,
     }
   }, {
     path: '/my',
@@ -103,7 +104,8 @@ export default [
       isTabItem: true,
       title: '我的',
       icon: '&#xe65d;',
-      isShowHeader: false,
+      isShowHeader: true,
+      isRequireLogin: true,
     }
   }, {
     path: '/list/:cateId',
@@ -121,12 +123,15 @@ export default [
     path: '/login',
     name: 'login',
     components: {
-      default: VhLogin
-
+      default: VhLogin,
+      header: sqTop
+      
   },
   meta: {
     isTabItem: false,
-    title: '登录'
+    title: '登录',
+    isShowHeader: true,
+
   }
 }, {
     path: '/details/:id',

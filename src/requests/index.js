@@ -47,3 +47,8 @@ export const getProductDetails = (id) => {
 export const getProductsById = (cateId, start=0) => {
   return ajax.get(`/api/tab/${cateId}?start=${start}`)
 }
+
+//请求rap2的登录数据
+export const getUserInfo = ({username,password}) => {
+  return axios.post('http://rap2api.taobao.org/app/mock/168140/222',{username,password})
+}
