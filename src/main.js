@@ -48,6 +48,18 @@ Vue.mixin ({
   }
 })
 
+//全局导航守卫
+router.beforeEach((to, from, next) => {
+  //显示隐藏返回
+  if(to.meta.isShowHeader) {
+    store.commit('changeBack')
+  }else{
+    store.commit('changeBack',false)
+  }
+  //切换标题的文字
+    store.commit('changeHeaderTitle',to.meta.title)
+  next()
+})
 
 Vue.prototype.$http = $http;
 

@@ -31,11 +31,17 @@ export default [
     },
     children: [{
       path: ':cateId',
-      component: sqProducts
+      component: sqProducts,
+      meta: {
+        isTabItem: false,
+        title: '商品',
+        isShowHeader: true,
+      }
     }],
     meta: {
       isTabItem: false,
-      title: '商品'
+      title: '商品',
+      isShowHeader: true,
     }
   }, {
     path: '/index',
@@ -80,7 +86,8 @@ export default [
     meta: {
       isTabItem: true,
       title: '购物车',
-      icon: '&#xe656;'
+      icon: '&#xe656;',
+      isShowHeader: false,
     }
   }, {
     path: '/my',
@@ -93,7 +100,8 @@ export default [
     meta: {
       isTabItem: true,
       title: '我的',
-      icon: '&#xe65d;'
+      icon: '&#xe65d;',
+      isShowHeader: false,
     }
 
   }, {
@@ -105,6 +113,7 @@ export default [
     },
     meta: {
       isTabItem: false,
-      title: '详情'
+      title: '详情',
+      isShowHeader: true
     }
   }]

@@ -71,6 +71,7 @@ export default {
         this.products = [...this.products, ...res.data.data.items.list]
         this.isEnd = res.data.data.items.isEnd
         this.start = res.data.data.items.nextIndex
+        console.log(this)
         this.loading = false
       })
     }

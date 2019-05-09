@@ -51,5 +51,13 @@ export default {
       }
       return item
     })
+  },
+  //改变是否显示首页返回
+  changeBack(state, isShow = true) {
+    state.isShowHeaderBack = isShow
+  },
+  //改变头标题
+  changeHeaderTitle(state, title = "名鞋库") {
+    state.headerTitle = title
   }
 }
