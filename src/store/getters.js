@@ -3,5 +3,8 @@ export default {
    return state.cates.reduce((total, item) =>  {
       return total += item.number
     },0)
+  },
+  isLogin: (state) => {
+    return Boolean(state.userInfo.token)
   }
 }
