@@ -34,6 +34,15 @@
 import Vue from 'vue'
 import { Field,Button } from 'vant';
 import { mapActions,mapGetters } from 'vuex';
+import Joi from '@hapi/joi'
+import { Toast } from 'vant';
+
+Vue.use(Toast);
+
+const schema = Joi.object().keys({
+    username: Joi.string().alphanum().min(3).max(30).required().error(()=>'用户名不符合规范'),
+    password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).error(()=>'密码不符合规范'),
+})
 
 Vue.use(Field).use(Button);
 export default {
@@ -49,7 +58,12 @@ export default {
     ]),
     loginClick() {
       const {username,password} = this
-      this.loginAction({username,password})
+      const result = Joi.validate({ username, password }, schema);
+      if (result.error === null) {
+        this.loginAction({username,password}, schema)
+      } else {
+        Toast('用户名或者密码不符合规范');
+      }
     }
   },
   computed: {
