@@ -33,9 +33,8 @@ export default {
     })
     state.cates = state.cates.filter(item => item.number > 0)
   },
-  //输入框内容改变,待修复
+  //输入框内容改变
   inputChange(state, data){
-    console.log(data)
     state.cates = state.cates.map(item => {
       if (item.id === data.id ) {
         item.number = data.value
@@ -51,5 +50,16 @@ export default {
       }
       return item
     })
+  },
+  //改变是否显示首页返回
+  changeBack(state, isShow = true) {
+    state.isShowHeaderBack = isShow
+  },
+  //改变头标题
+  changeHeaderTitle(state, title = "名鞋库") {
+    state.headerTitle = title
+  },
+  loginSucces(state, userInfo) {
+    state.userInfo = userInfo
   }
 }

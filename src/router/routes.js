@@ -14,6 +14,8 @@ const Details = () => import('@/views/Details')
 const ShopCart = () => import('@/views/ShopCart')
 const sqProducts = () => import('@/components/sqProducts')
 const VhList = () => import('@/components/VhList')
+
+const CateList = () => import('../views/CateList')
 //导出的配置项
 export default [
   //根目录访问，直接重定向到/index
@@ -33,11 +35,17 @@ export default [
     },
     children: [{
       path: ':cateId',
-      component: sqProducts
+      component: sqProducts,
+      meta: {
+        isTabItem: false,
+        title: '商品',
+        isShowHeader: true,
+      }
     }],
     meta: {
       isTabItem: false,
-      title: '商品'
+      title: '商品',
+      isShowHeader: true,
     }
   }, {
     path: '/index',
@@ -65,7 +73,10 @@ export default [
       default: Shop,
       footer: sqFooter,
       header: sqHeader
-    },
+    },children: [{
+      path: ':cateID',
+      component: CateList
+    }],
     meta: {
       isTabItem: true,
       title: '商城',
@@ -82,7 +93,9 @@ export default [
     meta: {
       isTabItem: true,
       title: '购物车',
-      icon: '&#xe656;'
+      icon: '&#xe656;',
+      isShowHeader: false,
+      isRequireLogin: true,
     }
   }, {
     path: '/my',
@@ -95,7 +108,9 @@ export default [
     meta: {
       isTabItem: true,
       title: '我的',
-      icon: '&#xe65d;'
+      icon: '&#xe65d;',
+      isShowHeader: true,
+      isRequireLogin: true,
     }
   }, {
     path: '/list/:cateId',
@@ -106,18 +121,22 @@ export default [
     },
     meta: {
       isTabItem: false,
-      title: '列表'
+      title: '列表',
+      isShowHeader: true
     }
   }, {
     path: '/login',
     name: 'login',
     components: {
-      default: VhLogin
-
+      default: VhLogin,
+      header: sqTop
+      
   },
   meta: {
     isTabItem: false,
-    title: '登录'
+    title: '登录',
+    isShowHeader: true,
+
   }
 }, {
     path: '/details/:id',
@@ -128,6 +147,7 @@ export default [
     },
     meta: {
       isTabItem: false,
-      title: '详情'
+      title: '详情',
+      isShowHeader: true
     }
   }]

@@ -9,32 +9,18 @@
   extra-key="."
   close-button-text="完成"
   @blur="show = false"
-  @input="onInput"
-  @delete="onDelete"
 />
 </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import { NumberKeyboard } from 'vant';
-
-Vue.use(NumberKeyboard);
 export default {
   data() {
     return {
       show: true
     }
   },
-
-  methods: {
-    onInput(value) {
-      Toast(value);
-    },
-    onDelete() {
-      Toast('delete');
-    }
-  }
 
 }
 </script>

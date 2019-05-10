@@ -1,23 +1,37 @@
 <template>
+<div>
   <van-nav-bar
-  title="标题"
-  left-text=" 返回"
-  class="vh-color"
-  left-arrow
-  @click-left="onClickLeft"
-/>
+    :title="headerTitle"
+    v-if="isShowHeaderBack"
+    left-text="返回"
+    left-arrow
+    @click-left="onClickLeft"
+  />
+  <van-nav-bar
+    v-else
+    :title="headerTitle"
+    @click-left="onClickLeft"
+  />
+</div>
 </template>
 
 <script>
 import Vue from 'vue'
-import { NavBar,Icon } from 'vant';
+import { NavBar } from 'vant';
+import { mapState } from 'vuex'
 
-Vue.use(NavBar).use(Icon);
+Vue.use(NavBar)
 export default {
   methods: {
     onClickLeft(){
-      window.history.go(-1)
+      this.$router.back();
     }
+  },
+  computed: {
+    ...mapState([
+      'headerTitle',
+      'isShowHeaderBack'
+    ])
   }
 }
 </script>

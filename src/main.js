@@ -49,6 +49,32 @@ Vue.mixin ({
   }
 })
 
+//全局导航守卫
+router.beforeEach((to, from, next) => {
+  if(to.meta.isRequireLogin) {
+    if(store.getters.isLogin) {
+      next()
+    }else {
+      next({
+        name: 'login',
+        params: {
+          from: to.path
+        }
+      })
+    }
+  } else {
+    next()
+  }
+  //显示隐藏返回
+  if(to.meta.isShowHeader) {
+    store.commit('changeBack')
+  }else{
+    store.commit('changeBack',false)
+  }
+  //切换标题的文字
+    store.commit('changeHeaderTitle',to.meta.title)
+  next()
+})
 
 Vue.prototype.$http = $http;
 
