@@ -231,7 +231,7 @@ export default {
           this.imgs = this.detail.photo
           this.descContentList = resp.data.data.detail.descContentList.filter(item => item.photo)
            
-
+          this.$store.commit('changeHeaderTitle',this.detail.title)
         })
       })
   },
