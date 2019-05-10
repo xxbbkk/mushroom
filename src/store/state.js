@@ -8,5 +8,6 @@ export default {
     'avatar': '',
     'token': ''
   },
-  isLoggin: false
+  isLoggin: false,
+  isAllCheck: true
 }
