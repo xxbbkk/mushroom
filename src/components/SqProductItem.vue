@@ -33,7 +33,7 @@ export default {
 <style lang="scss">
 .sq-product-item {
   display: inline-block;
-  width: 46%;
+  width: 49%;
   padding: 8px;
   box-sizing: border-box;
 
