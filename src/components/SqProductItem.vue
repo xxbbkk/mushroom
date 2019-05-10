@@ -8,12 +8,22 @@
       <div class="sq-product-item__footer">
         <span class="price">￥{{price}}</span> 
        </div>
-       <span class="btn" @click.stop="addToGlobalCart">立即购买</span>
+       <span
+       class="btn"
+       @click.stop="addToCart({
+          id: id,
+          title: title,
+          img: imgSrc,
+          price: price,
+          isChecked: false
+        })"
+        >加入购物车</span>
     </router-link>
     
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'SqProductItem',
   props: {
@@ -23,9 +33,9 @@ export default {
     price: Number
   },
   methods: {
-    addToGlobalCart () {
-      console.log('TODO:添加到购物车',this.id)
-    }
+    ...mapMutations([
+      'addToCart'
+    ])
   }
 }
 </script>
