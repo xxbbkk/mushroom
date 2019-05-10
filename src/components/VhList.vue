@@ -14,12 +14,17 @@
 </van-tabs>
 </div>
 <div class="vh-list-bottom">
-    <ul>
+    <ul
+    v-infinite-scroll="getUserList"
+     :infinite-scroll-disabled="loading"
+     :infinite-scroll-distance="10"
+     >
         <router-link
         v-for="list in userList" 
         :key="list.id"
         :to="`/details/${list.id}`"
         tag="li"
+        class="vh-list-bottom__li"
         >
             <div class="vh-box">
             <div class="vh-box__img">
@@ -35,7 +40,11 @@
                 </div>
         </router-link>
         <div class="vh-list-more" v-if="!isEnd" @click="getUserList">加载更多</div>
-  <div class="vh-list-more" v-else>没有更多了</div>
+       <div class="vh-list-more" v-else>没有更多了</div>
+       <back-top 
+       class="vh-back-top"
+        scroll-container=".vh-list-bottom"
+        :distance-to-show="300"/>
     </ul>
 </div>
 </div>
@@ -50,7 +59,8 @@ export default {
        return {
             userList: [],
             isEnd: false,
-           start: 0,
+            start: 0,
+            loading: false
        }
     },
     // created () {
@@ -68,25 +78,30 @@ export default {
          },
     //该方法请求产品
     getUserList () {
+        console.log('aaa')
+      this.loading = true
       const cateId = this.$route.params.cateId
       this.$http.getProductsById(cateId,this.start)
       .then(resp => {
-        this.userList = [...this.userList,...resp.data.data.items.list]
+        resp.data.data.items.list = resp.data.data.items.list.filter(item => item.title != undefined)
+        this.userList = [...this.userList, ...resp.data.data.items.list]
         this.isEnd = resp.data.data.items.isEnd
         this.start = resp.data.data.items.nextIndex
+        this.loading = false
       })
     }
    },
    //在进入页面之前要先请求一次数据
-   beforeRouteEnter(to, from, next) {
-    next(vm => {
-      vm.getUserList()
-    })
-  },
+//    beforeRouteEnter(to, from, next) {
+//     next(vm => {
+//       vm.getUserList()
+//     })
+//   },
   beforeRouteUpdate(to, from, next) {
-    next()
     this.userList = [];
     this.start = 0;
+    next()
+   
     this.getUserList();
   }
 }
@@ -95,6 +110,7 @@ export default {
 <style lang="scss" scoped>
 .vh {
     &-list {
+        height: 100%;
         position: relative;
         &-top {
             border-top:1px solid rgb(190, 189, 189); 
@@ -105,14 +121,16 @@ export default {
         }
         &-bottom {
             width: 100%;
+            height: 100%;
             overflow-x: hidden;
-           background-color: #f0f0f0;
-            ul {
+            background-color: #f0f0f0;
+           ul {
                 width: 100%;
                 display: flex;
                 flex-flow: wrap;
                  margin-top: 2%;
-                 li {
+            }
+             &__li {
                      width: 47%;
                      height: 0;
                      padding-top:calc(100%*4/6);
@@ -123,7 +141,6 @@ export default {
                      box-sizing: border-box;
                      background-color: #fff;
                  }
-            }
         }
     }
     &-box {
@@ -195,6 +212,11 @@ export default {
     text-align: center;
     color: #666;
     font-size: 14px;
+  }
+  &-back-top {
+      position:fixed;
+      right: 10px;
+      bottom: 50px;
   }
 }
 </style>
