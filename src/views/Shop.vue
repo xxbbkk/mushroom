@@ -1,5 +1,7 @@
 <template>
   <div class="sq-mall">
+    <div class="back">
+ 
     <ul class="sq-mall-nav">
 
       <router-link 
@@ -11,8 +13,12 @@
       >
       <div class="sq-mall-nav__pic"><img :src="item.imageUrl" alt=""></div>
       <div class="sq-mall-nav__span">{{item.name}}</div>
-      
       </router-link>
+      <back-top
+         class="sq-cate-right__top"
+        scroll-container=".back"
+        :distance-to-show="300"
+      ></back-top>
 
     </ul>
     <div class="sq-mall-sort">
@@ -21,6 +27,8 @@
     <div class="sq-mall-like">
       <img class="sq-mall-like__img" src="https://s10.mogucdn.com/mlcdn/c45406/190426_4hlfgkc2ceaea67422ag73077lfce_1611x166.png_1000x9999.v1c7E.81.webp" alt="">
       <router-view></router-view>
+    </div>
+         
     </div>
   </div>
 </template>
@@ -54,13 +62,22 @@ export default {
 </script>
 
 <style lang="scss">
+.sq-cate-right__top {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 10;
+}
+.back {
+  overflow-x: hidden;
+}
 .sq {
   &-mall {
     // height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-
+    height: 100%;
     &-nav {
       display: flex;
       justify-content: space-around;
@@ -71,8 +88,7 @@ export default {
 
       &_item1 {
         width: 20%;
-        // height: 20%;
-
+      
         >.pic {
               width: 100%;
               border-radius: 50%;
@@ -88,12 +104,16 @@ export default {
                 max-width: 100%;
             }
       }
-
+      
       &__span {
          line-height: 30px;
          text-align: center;
          color: #666;
         }
+
+        &_sq-cate-right__top {
+        margin: 50px 0;
+      }
     }
 
     &-sort {

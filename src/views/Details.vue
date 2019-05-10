@@ -1,21 +1,17 @@
 <template>
 <div class="detailsBox">
   <div class="views">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-          <div 
-            class="swiper-slide"
-            v-for="img in detail.photo"
-            :key="img.id"
-          >
-            <img :src="img.url" style="height: 430.5px;visibility: inherit;display: inherit;"/>
-          </div>
-      </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
-      <!-- 如果需要滚动条 -->
-      <div class="swiper-scrollbar"></div>
+    <div class="swiper">
+      <van-swipe :autoplay="3000" indicator-color="white">
+        <van-swipe-item
+          v-for="img in imgs"
+          :key="img.id"
+        >
+          <img :src="img.url" alt="">
+        </van-swipe-item>
+      </van-swipe>
     </div>
+    
     <div class="price-mgj-normal">
       <div class="price">
         <div class="price-now">
@@ -164,7 +160,8 @@
     </back-top>
   </div>
   <!-- 底部 -->
-  <div class="footbar">
+  
+    <div class="footbar">
     <div class="footbar-icons">
       <div class="icon-wrapper">
         <span class="m-icon-shop">
@@ -187,20 +184,32 @@
     </div>
     <div class="footbar-btns">
       <div class="btn-pink">
-        <span>加入购物车</span>
+        <span
+           @click.stop="addToCart({
+          id: detail.id,
+          title: detail.title,
+          img: detail.image,
+          price: detail.price,
+          isChecked: false
+        })"
+        >加入购物车</span>
       </div>
       <div class="btn-red">
         <div>立即购买</div>
       </div>
     </div>
   </div>
+  
 </div>
 </template>
 
 <script>
-import Swiper from 'swiper/dist/js/swiper.min.js'
-import 'swiper/dist/css/swiper.css'
+import Vue from 'vue'
 
+import { Swipe, SwipeItem } from 'vant'
+Vue.use(Swipe).use(SwipeItem);
+
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Details',
@@ -210,8 +219,7 @@ export default {
       detail: {
         shop: {},
       },
-      aaj: {}
-     
+      imgs: [],
     }
   },
   created () {
@@ -220,27 +228,17 @@ export default {
       .then(resp => {
         this.$nextTick(() => {
           this.detail = resp.data.data.detail
-
+          this.imgs = this.detail.photo
           this.descContentList = resp.data.data.detail.descContentList.filter(item => item.photo)
            
-          this.initSwiper()
+          this.$store.commit('changeHeaderTitle',this.detail.title)
         })
       })
   },
   methods: {
-    initSwiper () {
-      this.mySwiper = new Swiper ('.swiper-container', {
-        loop: true, // 循环模式选项
-        // 如果需要分页器
-        pagination: {
-          el: '.swiper-pagination',
-        },
-        // 如果需要滚动条
-        scrollbar: {
-          el: '.swiper-scrollbar',
-        },
-      })        
-    }
+    ...mapMutations([
+      'addToCart'
+    ]),        
   }
 }
 </script>
@@ -253,56 +251,22 @@ export default {
   flex-flow: column nowrap;
 
   & .views {
+    width: 100%;
     margin: 0 auto;
     background-color: #eaeaea;
     font-size: 12px;
     overflow-x: hidden;
+    flex: 1;
+    
+    & .swiper {
+      width: 100%;
 
-    & .swiper-container {
-      height: 430px;
-      padding-top: 9px;
-      background-color: #fff;
-
-      & .swiper-wrapper {
-        transition-duration: 300ms;
-        transform: translate3d(0px, 0px, 0px);
-
-        position: relative;
+      & .van-swipe {
+        max-width: 100%;
+      }
+      img {
         width: 100%;
         height: 100%;
-        z-index: 1;
-        display: flex;
-        box-sizing: content-box;
-        text-align: center;
-        transform-style: preserve-3d;
-        transition-property: transform, -webkit-transform;
-        
-        & .swiper-slide {
-          flex-shrink: 0;
-          max-width: 100%;
-          height: 100%;
-          position: relative;
-          margin: auto;
-
-          transform: translate3d(0px, 0px, 0px);
-          transform-style: preserve-3d;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          & img {
-            max-width: 100%;
-            height: 430.5px;
-            visibility: inherit;
-            display: inherit;
-
-            background: #eee;
-            border-radius: .04rem;
-            box-shadow: 0 0.02rem 0.2rem 0 rgba(0,0,0,.1)
-
-          }
-        }
       }
     }
 
