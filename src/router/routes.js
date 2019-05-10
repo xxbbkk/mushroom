@@ -14,6 +14,8 @@ const Details = () => import('@/views/Details')
 const ShopCart = () => import('@/views/ShopCart')
 const sqProducts = () => import('@/components/sqProducts')
 const VhList = () => import('@/components/VhList')
+
+const CateList = () => import('../views/CateList')
 //导出的配置项
 export default [
   //根目录访问，直接重定向到/index
@@ -71,7 +73,10 @@ export default [
       default: Shop,
       footer: sqFooter,
       header: sqHeader
-    },
+    },children: [{
+      path: ':cateID',
+      component: CateList
+    }],
     meta: {
       isTabItem: true,
       title: '商城',

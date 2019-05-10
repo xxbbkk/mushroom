@@ -36,7 +36,7 @@ export const getUser = () => {
 }
 //导出getDate请求方法
 export const getDate = () => {
-  return ajax.get('/api/tabs?sa=')
+  return ajax.get('/api/tabs')
 }
 // 获取详情
 export const getProductDetails = (id) => {
@@ -46,6 +46,10 @@ export const getProductDetails = (id) => {
 //通过id请求产品
 export const getProductsById = (cateId, start=0) => {
   return ajax.get(`/api/tab/${cateId}?start=${start}`)
+}
+
+export const getProductList = (cateID, start = 0) => {
+  return ajax.get(`/api/tab/${cateID}?start=${start}`)
 }
 
 //请求rap2的登录数据

@@ -19,7 +19,7 @@
             @click="deCrement(id)"
           >-</button>
           <input class="input"
-            :value="number"
+            v-model="number"
             @input="inputChange({
               id,
               value:number
@@ -44,7 +44,6 @@ export default {
   data() {
     return {
       checked: Boolean,
-      value:'',
     }
   },
   mounted() {

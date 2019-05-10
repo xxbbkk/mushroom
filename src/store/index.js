@@ -23,7 +23,6 @@ const syncUserInfo = store => {
     // 每次 mutation 之后调用
     // mutation 的格式为 { type, payload }
     // if(mutation.type == "changeHeaderTitle") {
-      // console.log(mutation)
       window.localStorage.setItem('sq-login', JSON.stringify(state.userInfo))
     // }
   })

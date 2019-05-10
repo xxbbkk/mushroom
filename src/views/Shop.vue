@@ -1,51 +1,137 @@
 <template>
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 2</div>
+  <div class="sq-mall">
+    <ul class="sq-mall-nav">
+
+      <router-link 
+      v-for="item in category"
+      :key="item.id"
+      class="sq-mall-nav_item1" 
+      tag="li" 
+      :to="`/list/${item.id}`"
+      >
+      <div class="sq-mall-nav__pic"><img :src="item.imageUrl" alt=""></div>
+      <div class="sq-mall-nav__span">{{item.name}}</div>
+      
+      </router-link>
+
+    </ul>
+    <div class="sq-mall-sort">
+      <img class="sq-mall-sort__img" @click="addToGlobalCart" src="https://s10.mogucdn.com/mlcdn/c45406/181112_04h64bddba7932720jh8j025g9kk5_750x200.jpg" alt="">
     </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
+    <div class="sq-mall-like">
+      <img class="sq-mall-like__img" src="https://s10.mogucdn.com/mlcdn/c45406/190426_4hlfgkc2ceaea67422ag73077lfce_1611x166.png_1000x9999.v1c7E.81.webp" alt="">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import Swiper from "swiper/dist/js/swiper.min.js";
-import "swiper/dist/css/swiper.min.css";
 
 export default {
-  name: "shop",
+  data () {
+    return {
+      category: []
+    }
+  },
   created() {
-    
-    this.$nextTick(() => {
-      this.swiperInit();
-    });
+    this.$http.getDate()
+    .then(resp => {
+      const {list} = resp
+      this.category = list.splice(0,15)
+      this.$nextTick()
+      .then(() => {
+        const {cateID= list[0].id} = this.$route.params
+        this.$router.push(`/shop/${cateID}`)
+      })
+    })
   },
   methods: {
-    swiperInit() {
-      new Swiper('.swiper-container', {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
+    addToGlobalCart () {
+      console.log('添加到购物车',this.id)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
-.swiper-container {
+.sq {
+  &-mall {
+    // height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &-nav {
+      display: flex;
+      justify-content: space-around;
+      box-sizing: border-box;
+      padding: 10px 0;
       width: 100%;
-      height: 20%;
+      flex-wrap: wrap;
+
+      &_item1 {
+        width: 20%;
+        // height: 20%;
+
+        >.pic {
+              width: 100%;
+              border-radius: 50%;
+              height: 0;
+              padding-top: 100%;
+              position: relative;
+         }
+         img {
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                max-width: 100%;
+            }
+      }
+
+      &__span {
+         line-height: 30px;
+         text-align: center;
+         color: #666;
+        }
     }
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-}
+
+    &-sort {
+      padding-top: 20px;
+      width: 100%;
+
+      &__item3 { 
+        height: 19%;
+        width: 19%;
+        justify-content: space-around;
+        
+        background: red;
+        &.router-link-active,
+        &.router-link-exact-active {
+          color: #fff;
+        }
+      }
+      &__img {
+            position: relative;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            max-width: 100%;
+      }
+    }
+
+      &-pop {
+      background: #bb3b;
+    }
+
+    &-like {
+      background: #fff;
+      flex: 1;
+      &__img {
+        width: 100%;
+      }
+    }
+    }
+    }
 </style>

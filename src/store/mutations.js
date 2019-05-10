@@ -33,9 +33,8 @@ export default {
     })
     state.cates = state.cates.filter(item => item.number > 0)
   },
-  //输入框内容改变,待修复
+  //输入框内容改变
   inputChange(state, data){
-    console.log(data)
     state.cates = state.cates.map(item => {
       if (item.id === data.id ) {
         item.number = data.value
