@@ -37,13 +37,15 @@ export default {
 
 <style lang="scss" scoped>
 .sq-dire {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  line-height: 30px;
-  background: red;
+  line-height: 50px;
+  background:rgba(0,0,0,0.7);
+  color: #fff;
+  font-weight: bold;
   text-align: center;
-  box-shadow: 0 0 10px black;
+  box-shadow: 0 0 5px black;
 }
 @font-face {
   font-family: 'iconfont';  /* project id 1169720 */

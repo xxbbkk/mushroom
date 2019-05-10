@@ -36,7 +36,7 @@ export default {
   created() {
     this.$http.getDate()
     .then(resp => {
-      const {list} = resp
+      const {list} = resp.data.data
       this.category = list.splice(0,15)
       this.$nextTick()
       .then(() => {

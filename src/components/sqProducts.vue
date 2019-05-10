@@ -12,19 +12,21 @@
     :to="`/details/${item.id}`"
     class="sq-product"
   >
-    <img
-      :src="item.image"
-      alt=""
-      class="sq-product-img"
-    ><br>
+  <div class="vh-img-box">
+  <div class="vh-img">
+    <img :src="item.image" alt="" >
+    </div>
     <span class="sq-product-text">{{item.title }}</span>
     <div class="sq-product-price">
-      <span class="sq-product-price__origin">￥{{item.originPrice}}</span>
-      <span class="sq-product-price__now">￥{{item.price | toFixed2 }}</span>
+      <strong>￥{{item.price | toFixed2 }}</strong>
+      <van-icon name="star-o" class="sq-product__icon" />
+      <i class="sq-product__i">{{item.saleNum}}</i>
     </div>
     <div class="sq-product-btn">
       <van-button
-        type="info"
+        plain 
+        type="danger"
+        size="small"
         @click.stop="addToCart({
           id: item.id,
           title: item.title,
@@ -34,6 +36,7 @@
         })"
       >加入购物车</van-button>
     </div>
+    </div>
   </router-link>
   <div class="sq-product-more" v-if="!isEnd">没有更多了</div>
 </div>
@@ -41,8 +44,8 @@
 
 <script>
 import Vue from 'vue'
-import { Button } from 'vant';
-Vue.use(Button);
+import { Button,Icon } from 'vant';
+Vue.use(Button).use(Icon);
 
 import { mapMutations } from 'vuex'
 
@@ -101,48 +104,69 @@ export default {
   }
   .sq-product {
     position: relative;
-    padding-top:50%;
-    width: 50%;
+    width: 48%;
+    height: 0;
+    padding-top:calc(100%*850/1080);
+    padding-bottom: 2%;
+    margin:2% 1%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    box-sizing: border-box;
     &-text {
       height: 25px;
-      line-height: 25px;
+      font-size: 12px;
     }
-    &-img {
-      padding: 0 5px;
-      width: 95%;
-      height: 50%;
+    .vh-img-box {
       position: absolute;
-      top: 0;
       left: 0;
+      top: 0;
       right: 0;
       bottom: 0;
     }
+     .vh-img {
+            width: 100%;
+            height: 0;
+            padding-top: 100%;
+            position: relative;
+            box-sizing: border-box;
+            border-radius: 2%;
+            img {
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
     &-btn {
-      display: flex;
-      margin: 5px 0;
-      justify-content: center;
+      padding: 0 18px;
+      margin: 28% 8%;
     }
     &-price {
-      display: flex;
-      justify-content: space-between;
-      margin: 5px;
+
+      margin: 8% 0;
       box-sizing: border-box;
-      &__origin {
-        display: block;
-        color: grey;
-        height: 25px;
-        line-height: 25px;
-        text-decoration: line-through;
-      }
-      &__now {
-        height: 25px;
-        line-height: 25px;
-        color: red;
+     strong {
+        font-weight: bold;
+           font-size: 16px;
+           float: left;
+           color: #FF5577;
       }
     }
+     &__icon {
+          margin-left: 2%;
+          float: right;
+           color: #999;
+           font-size: 12px;
+       }
+       &__i {
+           font-size: 12px;
+            color: #999;
+            line-height: 14px;
+            float: right;
+       }
   }
   .sq-product-more {
     width: 100%;

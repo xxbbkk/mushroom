@@ -30,17 +30,19 @@ export default {
     return {
       productList: [],
       isEnd: false,
-      start: 0,
-      loading: false
+      start: 0
     }
   },
   methods: {
     getData () {
+      this.loading = true
       const { cateID } = this.$route.params
      this.$http.getProductList(cateID,this.start).then(resp => {
+       resp = resp.data.data
       this.productList = [...this.productList,...resp.items.list]
       this.isEnd = resp.items.isEnd
       this.start = resp.items.nextIndex
+      this.loading = false
     })
     }
   },

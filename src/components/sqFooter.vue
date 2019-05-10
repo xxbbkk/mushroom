@@ -46,7 +46,7 @@ export default {
     display: flex;
     .router-link-exact-active,
     .router-link-active{
-      color: red;
+      color: #FF5777;
     }
     &-li{
       width: 25%;
