@@ -78,7 +78,6 @@ export default {
          },
     //该方法请求产品
     getUserList () {
-        console.log('aaa')
       this.loading = true
       const cateId = this.$route.params.cateId
       this.$http.getProductsById(cateId,this.start)
