@@ -37,7 +37,7 @@ export default {
   inputChange(state, data){
     state.cates = state.cates.map(item => {
       if (item.id === data.id ) {
-        item.number = data.value
+        item.number = +data.value
       }
       return item
     })
