@@ -164,21 +164,15 @@
     <div class="footbar">
     <div class="footbar-icons">
       <div class="icon-wrapper">
-        <span class="m-icon-shop">
-
-        </span>
+        <i class="iconfont m-icon-shop">&#xe650;</i>
         <span class="text">店铺</span>
       </div>
       <div class="icon-wrapper">
-        <span class="m-icon-shop">
-          
-        </span>
+        <i class="iconfont m-icon-shop">&#xe6a6;</i>
         <span class="text">客服</span>
       </div>
       <div class="icon-wrapper">
-        <span class="m-icon-shop">
-          
-        </span>
+        <i class="iconfont m-icon-shop">&#xe65a;</i>
         <span class="text">收藏</span>
       </div>
     </div>
@@ -829,12 +823,11 @@ export default {
 
         & .m-icon-shop {
           color: #666;
-          font-size: 12px;
+          font-size: 18px;
           display: flex;
           font-style: normal;
           width: 20px;
           height: 28px;
-          border: 1px solid;
 
           & ::after {
             contain: "\e611"
@@ -884,5 +877,24 @@ export default {
     right: 20px;
     z-index: 50;
   }
+}
+
+//引入矢量图
+@font-face {
+  font-family: 'iconfont';  /* project id 1187817 */
+  src: url('//at.alicdn.com/t/font_1187817_prucnnu94lj.eot');
+  src: url('//at.alicdn.com/t/font_1187817_prucnnu94lj.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1187817_prucnnu94lj.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1187817_prucnnu94lj.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1187817_prucnnu94lj.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1187817_prucnnu94lj.svg#iconfont') format('svg');
+}
+//矢量图样式
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

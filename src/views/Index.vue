@@ -89,7 +89,7 @@ data() {
    this.$http.getHomeList ()
    .then (resp => {
      const list = resp.data.data.list
-     this.vhList = list.splice(2)
+     this.vhList = list
    }),
    //rap2模拟的用户数据
    this.$http.getUser ()
