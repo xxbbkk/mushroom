@@ -6,7 +6,7 @@
     </header>
     <main>
       <!-- 路由默认组件 -->
-      <router-view></router-view>
+      <router-view v-if="isRouterAlive"></router-view>
     </main>
     <footer>
       <!-- 路由footer组件 -->
@@ -18,7 +18,26 @@
 <script>
 
 export default {
-  name: 'app'
+  name: 'app',
+  //提供reload方法，该方法通过控制router-view的显示隐藏达到刷新页面效果，但用户体验好。
+  provide () {
+    return {
+      reload: this.reload
+    }
+  },
+  data () {
+    return {
+      isRouterAlive: true
+    }
+  },
+  methods: {
+    reload () {
+      this.isRouterAlive = false
+      this.$nextTick(function () {
+        this.isRouterAlive = true
+      })
+    }
+  }
 }
 </script>
 

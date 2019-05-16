@@ -63,11 +63,11 @@ export default {
         state.userInfo = userInfo
     },
 
-    // //当全选改变时
-    // allCheckChange(state, Bool) {
-    //     state.cates.map(item => {
-    //         item.isChecked = Bool
-    //         return item
-    //     })
-    // }
+    //当全选改变时
+    allCheckChange(state, Bool) {
+        state.cates.map(item => {
+            item.isChecked = Bool
+            return item
+        })
+    }
 }
