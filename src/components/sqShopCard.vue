@@ -43,11 +43,8 @@ export default {
   props:['id','number','title','price','isChecked','img'],
   data() {
     return {
-      checked: Boolean,
+      checked: this.$props.isChecked,
     }
-  },
-  mounted() {
-    this.checked = this.$props.isChecked
   },
   methods: {
     ...mapMutations([

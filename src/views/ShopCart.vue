@@ -17,7 +17,7 @@
     :price="sumPrice"
     button-text="提交订单"
   >
-    <van-checkbox v-model="allCheckBtn">全选</van-checkbox>
+    <van-checkbox v-model="allCheckBtn" @click="allCheckClick">全选</van-checkbox>
     <!-- <span slot="tip">
       你的收货地址不支持同城送, <span>修改地址</span>
     </span> -->
@@ -39,17 +39,21 @@ export default {
   },
   data() {
     return {
-     allCheckBtn: this.$store.state.isAllCheck
+     allCheckBtn: this.$store.getters.isAllChecked,
     }
   },
   computed: {
     ...mapState([
-      'cates',
-      'isAllCheck'
+      'cates'
     ]),
     ...mapGetters([
       'sumPrice'
     ])
+  },
+  methods: {
+    allCheckClick() {
+      this.$store.commit('allCheckChange', this.allCheckBtn)
+    }
   },
 }
 </script>
