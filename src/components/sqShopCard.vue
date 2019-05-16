@@ -3,7 +3,7 @@
     <div class="sq-shop-left">
       <van-checkbox
         v-model="checked"
-        @click="checkedChange({checked, id})"
+        @click="aCheckChange"
       />
     </div>
     <img class="sq-shop-img" :src="img" :alt="title">
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   props:['id','number','title','price','isChecked','img'],
@@ -52,7 +52,11 @@ export default {
       'deCrement',
       'inputChange',
       'checkedChange'
-    ])
+    ]),
+    aCheckChange() {
+      this.checkedChange({checked:this.checked, id:this.id})
+      this.$emit("aClick", this.$store.getters.isAllChecked)
+    },
   }
 }
 </script>

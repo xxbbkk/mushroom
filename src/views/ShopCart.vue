@@ -10,6 +10,7 @@
       :price="item.price"
       :number="item.number"
       :img="item.img"
+      @aClick= "receive"
     />
   </div>
   <van-submit-bar
@@ -39,7 +40,7 @@ export default {
   },
   data() {
     return {
-     allCheckBtn: this.$store.getters.isAllChecked,
+     allCheckBtn: this.$store.getters.isAllChecked
     }
   },
   computed: {
@@ -47,14 +48,20 @@ export default {
       'cates'
     ]),
     ...mapGetters([
-      'sumPrice'
+      'sumPrice',
+      'isAllChecked'
     ])
   },
+  inject: ['reload'],
   methods: {
+    receive(res) {
+      this.allCheckBtn = res
+    },
     allCheckClick() {
       this.$store.commit('allCheckChange', this.allCheckBtn)
+      this.reload()
     }
-  },
+  }
 }
 </script>
 

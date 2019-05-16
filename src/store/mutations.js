@@ -62,6 +62,8 @@ export default {
     loginSucces(state, userInfo) {
         state.userInfo = userInfo
     },
+
+    //当全选改变时
     allCheckChange(state, Bool) {
         state.cates.map(item => {
             item.isChecked = Bool
