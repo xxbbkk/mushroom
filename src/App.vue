@@ -7,7 +7,7 @@
     <main>
       <!-- 路由默认组件 -->
       
-      <keep-alive exclude="category,list">
+      <keep-alive exclude="category,list,shopCart">
       <router-view v-if="isRouterAlive"></router-view>
       </keep-alive>
     </main>
