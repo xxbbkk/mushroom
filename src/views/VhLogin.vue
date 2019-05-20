@@ -71,6 +71,7 @@ export default {
     }
   },
   created() {
+    //验证码界口，不过出了点问题
     // getVerificationCode().then(res => {
     //   console.log(res)
     // })
@@ -84,7 +85,6 @@ export default {
       const {username,password} = this
       const result = Joi.validate({ username, password }, schema);
       if (result.error === null) {
-        console.log(this.yzm)
         if(this.yzm == this.num){
           this.loginAction({username,password}, schema)
         }else{
