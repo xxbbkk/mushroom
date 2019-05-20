@@ -73,5 +73,6 @@ export default {
     line-height: 16px;
     text-align: center;
     border-radius: 8px;
+    z-index:300;
   }
 </style>
