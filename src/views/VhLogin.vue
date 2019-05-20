@@ -51,7 +51,7 @@ import { Field,Button } from 'vant';
 import { mapActions,mapGetters } from 'vuex';
 import Joi from '@hapi/joi'
 import { Toast } from 'vant';
-import { getVerificationCode } from '@/requests'
+// import { getVerificationCode } from '@/requests'
 
 Vue.use(Toast);
 

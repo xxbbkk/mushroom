@@ -35,6 +35,7 @@ Vue.use(Cell).use(CellGroup).use(Checkbox).use(SubmitBar);
 import sqShopCard from '@/components/sqShopCard'
 import { mapState,mapGetters } from 'vuex'
 export default {
+  name: 'shopCart',
   components: {
     sqShopCard
   },

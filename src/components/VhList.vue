@@ -55,6 +55,7 @@ import Vue from 'vue'
 import { Tab,Tabs,Icon } from 'vant';
 Vue.use(Tab).use(Tabs).use(Icon);
 export default {
+    name: 'list',
     data () {
        return {
             userList: [],
