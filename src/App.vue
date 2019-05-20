@@ -6,7 +6,10 @@
     </header>
     <main>
       <!-- 路由默认组件 -->
+      
+      <keep-alive exclude="category,list">
       <router-view v-if="isRouterAlive"></router-view>
+      </keep-alive>
     </main>
     <footer>
       <!-- 路由footer组件 -->
@@ -22,12 +25,12 @@ export default {
   //提供reload方法，该方法通过控制router-view的显示隐藏达到刷新页面效果，但用户体验好。
   provide () {
     return {
-      reload: this.reload
+      reload: this.reload,
     }
   },
   data () {
     return {
-      isRouterAlive: true
+      isRouterAlive: true,
     }
   },
   methods: {
