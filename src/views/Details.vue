@@ -164,20 +164,20 @@
     <div class="footbar">
     <div class="footbar-icons">
       <div class="icon-wrapper">
-        <span class="m-icon-shop">
-
+        <span class="m-icon-shop iconfont">
+         &#xe650;
         </span>
         <span class="text">店铺</span>
       </div>
       <div class="icon-wrapper">
-        <span class="m-icon-shop">
-          
+        <span class="m-icon-shop iconfont">
+           &#xe70d;
         </span>
         <span class="text">客服</span>
       </div>
       <div class="icon-wrapper">
-        <span class="m-icon-shop">
-          
+        <span class="m-icon-shop iconfont">
+         &#xe60f;
         </span>
         <span class="text">收藏</span>
       </div>
@@ -829,13 +829,10 @@ export default {
 
         & .m-icon-shop {
           color: #666;
-          font-size: 12px;
           display: flex;
-          font-style: normal;
           width: 20px;
-          height: 28px;
-          border: 1px solid;
-
+          font-size: 20px;
+          margin-top: -5px;
           & ::after {
             contain: "\e611"
           }

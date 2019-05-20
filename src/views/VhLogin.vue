@@ -1,6 +1,6 @@
 <template>
 <div>
-  <van-cell-group class="vh-login">
+  <div class="vh-login">
   <van-field
   class="vh-login__user"
     v-model="username"
@@ -21,13 +21,28 @@
     :value="password"
     required
   />
-</van-cell-group>
+
+<div >
+  <van-field
+    class="vh-yzm"
+    center
+    clearable
+    label="验证码"
+    v-model="yzm"
+    placeholder="请输入验证码"
+  >
+    <van-button slot="button" size="small" type="primary">{{num}}</van-button>
+  </van-field>
+</div>
+
+</div>
 <van-button
   round
   class="vh-btn"
   @click="loginClick"
 >登录</van-button>
 </div>
+
 </template>
 
 <script>
@@ -36,6 +51,7 @@ import { Field,Button } from 'vant';
 import { mapActions,mapGetters } from 'vuex';
 import Joi from '@hapi/joi'
 import { Toast } from 'vant';
+import { getVerificationCode } from '@/requests'
 
 Vue.use(Toast);
 
@@ -49,8 +65,16 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      num: '',
+      yzm:''
     }
+  },
+  created() {
+    // getVerificationCode().then(res => {
+    //   console.log(res)
+    // })
+    this.num = Math.floor(Math.random()*10000)+''
   },
   methods: {
     ...mapActions([
@@ -60,10 +84,16 @@ export default {
       const {username,password} = this
       const result = Joi.validate({ username, password }, schema);
       if (result.error === null) {
-        this.loginAction({username,password}, schema)
+        console.log(this.yzm)
+        if(this.yzm == this.num){
+          this.loginAction({username,password}, schema)
+        }else{
+          Toast('验证码不正确');
+        }
       } else {
         Toast('用户名或者密码不符合规范');
       }
+
     }
   },
   computed: {
@@ -99,6 +129,9 @@ export default {
         padding:0 32%;
         margin-left: 16%;
     }
+}
+.vh-yzm {
+  margin-top: 3%;
 }
 
 </style>
