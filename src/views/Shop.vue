@@ -22,7 +22,7 @@
 
     </ul>
     <div class="sq-mall-sort">
-      <img class="sq-mall-sort__img" @click="addToGlobalCart" src="https://s10.mogucdn.com/mlcdn/c45406/181112_04h64bddba7932720jh8j025g9kk5_750x200.jpg" alt="">
+      <img class="sq-mall-sort__img"  src="https://s10.mogucdn.com/mlcdn/c45406/181112_04h64bddba7932720jh8j025g9kk5_750x200.jpg" alt="">
     </div>
     <div class="sq-mall-like">
       <img class="sq-mall-like__img" src="https://s10.mogucdn.com/mlcdn/c45406/190426_4hlfgkc2ceaea67422ag73077lfce_1611x166.png_1000x9999.v1c7E.81.webp" alt="">
@@ -36,6 +36,7 @@
 <script>
 
 export default {
+  name: 'shop',
   data () {
     return {
       category: []
@@ -48,16 +49,11 @@ export default {
       this.category = list.splice(0,15)
       this.$nextTick()
       .then(() => {
-        const {cateID= list[0].id} = this.$route.params
+        const {cateID= list[1].id} = this.$route.params
         this.$router.push(`/shop/${cateID}`)
       })
     })
   },
-  methods: {
-    addToGlobalCart () {
-      console.log('添加到购物车',this.id)
-    }
-  }
 }
 </script>
 

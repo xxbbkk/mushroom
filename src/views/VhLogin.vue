@@ -62,6 +62,7 @@ const schema = Joi.object().keys({
 
 Vue.use(Field).use(Button);
 export default {
+  name: 'login',
   data() {
     return {
       username: '',
@@ -83,6 +84,7 @@ export default {
     ]),
     loginClick() {
       const {username,password} = this
+      console.log(this.username)
       const result = Joi.validate({ username, password }, schema);
       if (result.error === null) {
         if(this.yzm == this.num){
@@ -97,7 +99,6 @@ export default {
     }
   },
   computed: {
-    
     ...mapGetters([
       'isLogin'
     ])

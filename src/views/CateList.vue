@@ -36,7 +36,7 @@ export default {
   methods: {
     getData () {
       this.loading = true
-      const { cateID } = this.$route.params
+      const { cateID = 0 } = this.$route.params
      this.$http.getProductList(cateID,this.start).then(resp => {
        resp = resp.data.data
       this.productList = [...this.productList,...resp.items.list]

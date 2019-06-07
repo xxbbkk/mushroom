@@ -4,6 +4,9 @@
   <van-cell-group>
     <van-cell :title="userInfo.diplayName" value="尊敬的会员欢迎你!" />
   </van-cell-group>
+    <van-cell-group>
+    <van-cell @click="outLogin" value="退出登录" />
+  </van-cell-group>
 </div>
 </template>
 
@@ -20,7 +23,17 @@ export default {
       'userInfo'
     ])
   },
-
+  methods: {
+    outLogin() {
+      this.$store.state.userInfo = {
+        'id': '',
+        'diplayName': '',
+        'avatar': '',
+        'token': ''
+    }
+      this.$router.push('/login')
+    }
+  },
 }
 </script>
 
