@@ -1,7 +1,9 @@
 //该文件用于配置axios
 import axios from 'axios'
 import Vue from 'vue'
-import { Toast } from 'vant';
+import { Toast } from 'vant'
+
+import QS from 'qs'
 
 Vue.use(Toast);
 
@@ -52,15 +54,19 @@ export const getProductList = (cateID, start = 0) => {
     return ajax.get(`/api/tab/${cateID}?start=${start}`)
 }
 
-//请求rap2的登录数据
+//登录数据
 export const getUserInfo = ({ username, password }) => {
-    return axios.post('http://rap2api.taobao.org/app/mock/168140/222', { username, password })
+    return axios.post('http://localhost/sql/login.php', QS.stringify({ username, password }))
 }
 
-// //请求验证码数据
-// export const getVerificationCode = () => {
-//     return axios.post('https://route.showapi.com/26-4', {
-//         "showapi_appid": '89896',
-//         "showapi_sign": "b378105819ec42c783cfa00cd00c9b38"
-//     })
-// }
+//注册数据
+export const userRegister = ({ username, password }) => {
+        return axios.post('http://localhost/sql/register.php', QS.stringify({ username, password }))
+    }
+    // //请求验证码数据
+    // export const getVerificationCode = () => {
+    //     return axios.post('https://route.showapi.com/26-4', {
+    //         "showapi_appid": '89896',
+    //         "showapi_sign": "b378105819ec42c783cfa00cd00c9b38"
+    //     })
+    // }

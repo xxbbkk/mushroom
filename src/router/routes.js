@@ -26,6 +26,8 @@ const VhList = () =>
 
 const CateList = () =>
     import ('../views/CateList')
+const register = () =>
+    import ('@/views/Register')
     //导出的配置项
 export default [
     //根目录访问，直接重定向到/index
@@ -160,6 +162,18 @@ export default [
         meta: {
             isTabItem: false,
             title: '详情',
+            isShowHeader: true
+        }
+    }, {
+        path: '/register',
+        name: 'register',
+        components: {
+            default: register,
+            header: sqTop
+        },
+        meta: {
+            isTabItem: false,
+            title: '注册',
             isShowHeader: true
         }
     }

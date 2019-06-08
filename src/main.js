@@ -61,7 +61,7 @@ router.beforeEach((to, from, next) => {
     }
     //判断权限，是否需要登录
     if (to.meta.isRequireLogin) {
-        if (!store.getters.isLogin) {
+        if (!store.state.isLoggin) {
             next({
                 name: 'login',
                 params: {

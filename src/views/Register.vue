@@ -34,13 +34,12 @@
     <van-button slot="button" size="small" type="primary">{{num}}</van-button>
   </van-field>
 </div>
-  <router-link class="register" tag="div" to="/register">还没有账号？注册</router-link>
 </div>
 <van-button
   round
   class="vh-btn"
   @click="loginClick"
->登录</van-button>
+>注册</van-button>
 </div>
 
 </template>
@@ -51,16 +50,16 @@ import { Field,Button } from 'vant';
 import { mapActions,mapGetters } from 'vuex';
 import Joi from '@hapi/joi'
 import { Toast } from 'vant';
-import {getUserInfo} from '@/requests'
+import {userRegister} from '@/requests/index.js'
 
 Vue.use(Toast);
+Vue.use(Field).use(Button);
 
 const schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(30).required().error(()=>'用户名不符合规范'),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).error(()=>'密码不符合规范'),
 })
 
-Vue.use(Field).use(Button);
 export default {
   name: 'login',
   data() {
@@ -87,19 +86,14 @@ export default {
       const result = Joi.validate({ username, password }, schema);
       if (result.error === null) {
         if(this.yzm == this.num){
-          //登录请求
-          getUserInfo({username,password})
-          .then(resp => {
-            console.log(resp)
-            Toast(resp.data.res_message);
-            //保存登录数据
-            this.$store.state.userInfo.diplayName = username
-            this.$store.state.userInfo.token = true
-            if(resp.data.res_code == '1'){
-              this.$store.state.isLoggin = true
-              this.$router.push('/index')
-            }
-          })
+            userRegister({username,password})
+            .then(resp => {
+              Toast(resp.data.res_message)
+               if(resp.data.res_code == '1'){
+                 this.$router.push('/login')
+               }
+            })
+        //   this.loginAction({username,password}, schema)
         }else{
           Toast('验证码不正确');
         }
@@ -107,19 +101,6 @@ export default {
         Toast('用户名或者密码不符合规范');
       }
 
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'isLogin'
-    ])
-  },
-  watch: {
-    isLogin() {
-      if(this.isLogin) {
-        const { from = '/index'} = this.$route.params
-        this.$router.push(from)
-      }
     }
   }
 }
@@ -145,11 +126,5 @@ export default {
 .vh-yzm {
   margin-top: 3%;
 }
-.register {
-  width: 92%;
-  margin: auto;
-  margin-top: 17px;
-  color: #323233;
-  font-size: 14px;
-}
+
 </style>

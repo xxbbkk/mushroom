@@ -4,9 +4,9 @@ export default {
             return total += item.number
         }, 0)
     },
-    isLogin: (state) => {
-        return Boolean(state.userInfo.token)
-    },
+    // isLogin: (state) => {
+    //     return Boolean(state.userInfo.token)
+    // },
     //计算总价
     sumPrice: (state) => {
         return state.cates.reduce((sum, item) => {

@@ -1,6 +1,5 @@
 <template>
 <div class="sq-my">
-  <div class="sq-my-img"><img :src="userInfo.avatar"></div>
   <van-cell-group>
     <van-cell :title="userInfo.diplayName" value="尊敬的会员欢迎你!" />
   </van-cell-group>
@@ -25,13 +24,11 @@ export default {
   },
   methods: {
     outLogin() {
-      this.$store.state.userInfo = {
-        'id': '',
-        'diplayName': '',
-        'avatar': '',
-        'token': ''
-    }
       this.$router.push('/login')
+      this.$store.state.userInfo = {
+        'diplayName': '',
+    }
+
     }
   },
 }
