@@ -14,7 +14,7 @@
     "babel-plugin-import": "^1.11.0",
     "core-js": "^2.6.5",
     "mint-ui": "^2.2.13",
-    "swiper": "^4.5.0",
+    "swiper": "^6.5.1",
     "vant": "^1.6.16",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
